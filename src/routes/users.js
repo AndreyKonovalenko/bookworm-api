@@ -8,11 +8,11 @@ router.post("/", (req, res) => {
     const { email, password } = req.body.user
     const user = new User({ email})
     user.setPassword(password)
-    console.log("taken password")
+    console.log("taken password for new user")
     user.save()
         .then(userRecord => res.json({ user: userRecord.toAuthJSON() }))
         .catch(err => {
-            console.log("start response")
+            console.log("start response, if email is not unique")
             res.status(400).json( {errors: parseErrors(err.errors)} )
         })
 })

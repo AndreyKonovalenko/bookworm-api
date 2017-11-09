@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.post("/" , (req, res) => {
     const { credentials } = req.body
-    console.log(res.body)
+    console.log(req.body, "__", "router auth.js")
     User.findOne({email: credentials.email}).then(user => {
         if (user && user.isValidPassword(credentials.password)) {
             res.json( {user: user.toAuthJSON() })
